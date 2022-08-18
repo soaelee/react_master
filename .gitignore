@@ -4,6 +4,7 @@
 /node_modules
 /1_styled_component/node_modules
 /2_typescript/node_modules
+/3_crypto_tracker/node_modules
 /.pnp
 .pnp.js
 
