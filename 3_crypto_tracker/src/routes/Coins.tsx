@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -68,6 +69,9 @@ const Coins = () => {
   console.log(data);
   return (
     <Container>
+      <Helmet>
+        <title>COIN</title>
+      </Helmet>
       <Header>
         <Title>COIN</Title>
       </Header>
@@ -79,7 +83,7 @@ const Coins = () => {
             <Coin key={coin.id}>
               <Link
                 to={{
-                  pathname: `/${coin.id}/price`,
+                  pathname: `/${coin.id}`,
                   state: { name: coin.name },
                 }}
               >
