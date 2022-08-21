@@ -15,3 +15,15 @@ export const fetchCoinTickers = async (coinId: string) => {
     response.json()
   );
 };
+
+// floor는 내림처리, ceil은 올림처리
+// 오늘부터 일주일 전 구하기
+const endDate = Math.floor(Date.now() / 1000);
+const startDate = endDate - 60 * 60 * 24 * 7 * 2;
+
+export const fetchCoinHistory = async (coinId: string) => {
+  console.log(startDate, endDate);
+  return fetch(
+    `https://ohlcv-api.nomadcoders.workers.dev?coinId=${coinId}`
+  ).then((response) => response.json());
+};
