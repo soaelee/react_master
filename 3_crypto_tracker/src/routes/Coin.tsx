@@ -11,6 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "../apis";
+import ToggleMode from "../components/ToggleMode";
 import Chart from "./Chart";
 import Price from "./Price";
 
@@ -187,6 +188,7 @@ function Coin() {
             ? "Loading..."
             : infoData?.name}
         </Title>
+        <ToggleMode />
       </Header>
       {loading ? (
         <Loader>Loading...</Loader>
