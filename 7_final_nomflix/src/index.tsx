@@ -5,6 +5,8 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 import App from "./App";
 import { theme } from "./styles/theme";
 
+import { QueryClient, QueryClientProvider } from "react-query";
+
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 html, body, div, span, applet, object, iframe,
@@ -37,7 +39,11 @@ footer, header, hgroup, main, menu, nav, section {
     display: none;
 }
 body {
-  line-height: 1;
+  font-weight: 300;
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: ${(props) => props.theme.black.veryDark}
+  color: ${(props) => props.theme.white.darker};
+  line-height: 1.2;
 }
 menu, ol, ul {
   list-style: none;
@@ -67,13 +73,17 @@ a {
 }
 `;
 
+const client = new QueryClient();
+
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
+      <QueryClientProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <App />
+        </ThemeProvider>
+      </QueryClientProvider>
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById("root")
