@@ -52,7 +52,6 @@ const Row = styled(motion.div)`
 const Movie = styled(motion.div)<{ bgPhoto: string }>`
   background-color: white;
   height: 200px;
-  color: red;
   font-size: 66px;
   background-image: url(${(props) => props.bgPhoto});
   background-size: cover;
@@ -62,6 +61,21 @@ const Movie = styled(motion.div)<{ bgPhoto: string }>`
   }
   &:last-child {
     transform-origin: center right;
+  }
+`;
+
+const Info = styled(motion.div)`
+  padding: 20px;
+  background-color: ${(props) => props.theme.black.lighter};
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  h4 {
+    text-align: center;
+    font-size: 10px;
   }
 `;
 
@@ -87,6 +101,15 @@ const movieVariants = {
     transition: { delay: 0.4, duration: 0.2 },
   },
 };
+
+// 나머지는 parent에게 상속
+const infoVariants = {
+  hover: {
+    opacity: 1,
+    transition: { delay: 0.4, duration: 0.2 },
+  },
+};
+
 const offset = 6;
 function Home() {
   const [index, setIndex] = useState(0);
@@ -140,7 +163,11 @@ function Home() {
                       initial="normal"
                       whileHover="hover"
                       transition={{ type: "tween" }}
-                    />
+                    >
+                      <Info variants={infoVariants}>
+                        <h4>{movie.title}</h4>
+                      </Info>
+                    </Movie>
                   ))}
               </Row>
             </AnimatePresence>
